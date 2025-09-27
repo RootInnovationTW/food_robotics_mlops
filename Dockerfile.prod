@@ -1,0 +1,32 @@
+FROM python:3.9-slim as builder
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
+
+FROM python:3.9-slim
+
+RUN useradd -m -u 1000 robotuser && \
+    apt-get update && apt-get install -y --no-install-recommends \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY --from=builder /root/.local /home/robotuser/.local
+COPY . .
+
+USER robotuser
+ENV PATH=/home/robotuser/.local/bin:$PATH
+ENV PYTHONPATH=/app
+
+EXPOSE 5000
+
+CMD ["python", "main.py"]

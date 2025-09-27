@@ -1,0 +1,23 @@
+# 数据流水线配置
+data_dir: "data"
+
+sensor_files:
+  - "temperature_sensor.csv"
+  - "pressure_sensor.csv"
+
+image_dirs:
+  - "food_images"
+  - "quality_check"
+
+state_files:
+  - "robot_state_1.json"
+  - "robot_state_2.json"
+
+processing:
+  image_size: [224, 224]
+  normalize: true
+  augment: true
+
+output:
+  format: "parquet"
+  compression: "snappy"

@@ -1,0 +1,36 @@
+robots:
+  delta:
+    base_radius: 0.2
+    effector_radius: 0.1
+    upper_arm_length: 0.3
+    forearm_length: 0.4
+    max_speed: 2.0
+
+  scara:
+    L1: 0.3
+    L2: 0.25
+    max_speed: 2.0
+    payload_capacity: 5.0
+
+  bipedal:
+    foot_length: 0.2
+    foot_width: 0.1
+    body_mass: 30.0
+    leg_mass: 5.0
+    max_step_length: 0.3
+
+control:
+  pid:
+    kp: 1.0
+    ki: 0.1
+    kd: 0.01
+  
+  rl:
+    algorithm: "ppo"
+    learning_rate: 0.0003
+    gamma: 0.99
+
+simulation:
+  time_step: 0.004
+  gravity: [0, 0, -9.81]
+  gui: true

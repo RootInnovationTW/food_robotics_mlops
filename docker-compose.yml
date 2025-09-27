@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  food-robotics-app:
+    build: .
+    container_name: food-robotics-mlops
+    volumes:
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+    environment:
+      - PYTHONPATH=/app
+      - MLFLOW_TRACKING_URI=file:///app/mlruns
+    ports:
+      - "5000:5000"
+    command: python main.py
+
+  mlflow-ui:
+    build: .
+    container_name: mlflow-ui
+    volumes:
+      - ./mlruns:/app/mlruns
+    ports:
+      - "5001:5000"
+    command: mlflow ui --host 0.0.0.0 --port 5000 --backend-store-uri file:///app/mlruns
+
+  jupyter:
+    build: .
+    container_name: jupyter-notebook
+    volumes:
+      - .:/app
+      - ./notebooks:/app/notebooks
+    ports:
+      - "8888:8888"
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
