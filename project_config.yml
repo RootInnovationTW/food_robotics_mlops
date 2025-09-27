@@ -1,0 +1,27 @@
+# Configuration for Food Robotics MLOps Project
+# Robot parameters, simulation settings, and task-specific configs are defined here.
+
+scara_fish_processor:
+  # Kinematics
+  link_1_length: 0.25 # meters
+  link_2_length: 0.20 # meters
+  # Vision
+  camera_matrix: [1000, 0, 320, 0, 1000, 240, 0, 0, 1] # fx, 0, cx, 0, fy, cy, 0, 0, 1
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  # Processing Path
+  tool_offset_z: -0.05 # meters
+  cut_depth: -0.02 # meters
+  
+delta_robot_params:
+  stiffness_k_c: [100.0, 100.0, 150.0] # Example Cartesian stiffness N/m
+  end_effector_weight: 5.0 # in Newtons
+
+bipedal_robot_params:
+  num_links: 12
+  gravity: 9.81
+  foot_width_fw: 0.1 # meters
+  foot_length_fs: 0.2 # meters
+
+simulation_params:
+  num_units_q: 1000
+  setup_time_tsu: 5.0 # in minutes

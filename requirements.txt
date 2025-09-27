@@ -1,0 +1,11 @@
+mlflow
+pyspark
+delta-spark
+pandas
+numpy
+scikit-learn
+loguru
+python-dotenv
+kfp
+pyyaml
+opencv-python # For computer vision
