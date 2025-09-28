@@ -1,0 +1,11 @@
+name: food_robotics_env
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - scikit-learn
+  - pandas
+  - numpy
+  - mlflow
+  - matplotlib
+  - seaborn

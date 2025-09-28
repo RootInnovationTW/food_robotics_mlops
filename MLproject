@@ -1,0 +1,9 @@
+name: food_robotics_mlops
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      data_path: {type: str, default: "data/raw/raw.csv"}
+    command: "python src/train.py --data_path {data_path}"
