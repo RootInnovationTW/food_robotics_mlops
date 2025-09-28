@@ -178,4 +178,4 @@ Thanks to the following open-source projects:
 
 ---
 
-*Last Updated: January 2024*
+*Last Updated: Sep 2025*
