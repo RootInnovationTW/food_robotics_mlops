@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  mlflow-server:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/app/mlruns
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=file:///app/mlruns
+
+volumes:
+  mlflow-data:

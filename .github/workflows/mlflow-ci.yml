@@ -1,0 +1,43 @@
+name: MLflow CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-mlflow:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements-mlflow.txt
+        pip install pytest
+    
+    - name: Test MLflow integration
+      run: |
+        python -m pytest tests/test_mlflow_integration.py -v
+    
+    - name: Setup MLflow experiments
+      run: |
+        python scripts/setup_mlflow_experiments.py
+
+  model-validation:
+    runs-on: ubuntu-latest
+    needs: test-mlflow
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Validate models
+      run: |
+        python scripts/validate_models.py

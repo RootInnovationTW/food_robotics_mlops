@@ -1,0 +1,20 @@
+# 基本依賴
+numpy
+opencv-python
+scipy
+scikit-learn
+
+# MLflow相關
+mlflow[databricks]>=3.0.0
+ray[tune]
+optuna
+
+# 機器人相關
+# RPi.GPIO  # 如果在樹莓派上運行
+# pyserial  # 串口通信
+
+# 開發工具
+pytest
+jupyter
+black
+flake8
